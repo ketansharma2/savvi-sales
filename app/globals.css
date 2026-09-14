@@ -1,26 +1,357 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ==============================
+     SAVVI BRAND COLORS
+  ============================== */
+
+  /* Primary */
+  --savvi-blue: #2281aa;
+  --savvi-blue-dark: #176a8c;
+  --savvi-blue-light: #7cabc0;
+
+  /* Primary Alternative (Bright Blue) */
+  --savvi-blue-alt: #24a9ec;
+  --savvi-blue-alt-dark: #1a8bc4;
+  --savvi-blue-alt-light: #7acbf0;
+
+  /* Secondary */
+  --savvi-green: #5ab765;
+  --savvi-green-dark: #3e974a;
+  --savvi-green-light: #dff3e2;
+
+  /* Soft Colors */
+  --savvi-cyan: #b9dee8;
+  --savvi-cyan-light: #eef9fb;
+
+  /* ==============================
+     APPLICATION COLORS
+  ============================== */
+
+  --background: #f6fafb;
+  --foreground: #1f3f50;
+
+  --surface: #ffffff;
+  --surface-soft: #f3f9fa;
+
+  --text-primary: #1f3f50;
+  --text-secondary: #617480;
+  --text-muted: #8a9aa3;
+
+  --border: #dcebed;
+
+  /* ==============================
+     STATUS COLORS
+  ============================== */
+
+  --success: #5ab765;
+  --warning: #f5a524;
+  --danger: #e85d5d;
+  --info: #2281aa;
+
+  /* ==============================
+     SHADOWS
+  ============================== */
+
+  --shadow-sm: 0 2px 8px rgba(34, 129, 170, 0.08);
+  --shadow-md: 0 8px 24px rgba(34, 129, 170, 0.12);
+  --shadow-lg: 0 12px 40px rgba(34, 129, 170, 0.16);
+
+  /* Shadow with Alt Color */
+  --shadow-alt-sm: 0 2px 8px rgba(36, 169, 236, 0.08);
+  --shadow-alt-md: 0 8px 24px rgba(36, 169, 236, 0.12);
+  --shadow-alt-lg: 0 12px 40px rgba(36, 169, 236, 0.16);
+
+  /* ==============================
+     BORDER RADIUS
+  ============================== */
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
 }
 
 @theme inline {
+  /* Existing */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* SAVVI Colors - Primary */
+  --color-savvi-blue: var(--savvi-blue);
+  --color-savvi-blue-dark: var(--savvi-blue-dark);
+  --color-savvi-blue-light: var(--savvi-blue-light);
+
+  /* SAVVI Colors - Alternative Primary */
+  --color-savvi-blue-alt: var(--savvi-blue-alt);
+  --color-savvi-blue-alt-dark: var(--savvi-blue-alt-dark);
+  --color-savvi-blue-alt-light: var(--savvi-blue-alt-light);
+
+  /* SAVVI Colors - Secondary */
+  --color-savvi-green: var(--savvi-green);
+  --color-savvi-green-dark: var(--savvi-green-dark);
+  --color-savvi-green-light: var(--savvi-green-light);
+
+  /* SAVVI Colors - Soft */
+  --color-savvi-cyan: var(--savvi-cyan);
+  --color-savvi-cyan-light: var(--savvi-cyan-light);
+
+  /* Application */
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-border: var(--border);
+
+  /* Status */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ==============================
+   GLOBAL
+============================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==============================
+   CUSTOM SCROLLBAR
+============================== */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #eef5f6;
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--savvi-blue-light);
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--savvi-blue);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--savvi-blue-light) #eef5f6;
+}
+
+/* ==============================
+   TEXT CLAMP
+============================== */
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==============================
+   SAVVI UTILITY CLASSES
+============================== */
+
+/* Cards */
+.savvi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.savvi-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.savvi-card-alt {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-alt-sm);
+  transition: all 0.2s ease;
+}
+
+.savvi-card-alt:hover {
+  box-shadow: var(--shadow-alt-md);
+}
+
+/* Sidebar */
+.savvi-sidebar {
+  background: linear-gradient(
+    180deg,
+    var(--savvi-blue-dark) 0%,
+    var(--savvi-blue) 100%
+  );
+}
+
+.savvi-sidebar-alt {
+  background: linear-gradient(
+    180deg,
+    var(--savvi-blue-alt-dark) 0%,
+    var(--savvi-blue-alt) 100%
+  );
+}
+
+/* Buttons - Primary */
+.savvi-button-primary {
+  background: var(--savvi-blue);
+  color: white;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  padding: 8px 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.savvi-button-primary:hover {
+  background: var(--savvi-blue-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.savvi-button-primary-alt {
+  background: var(--savvi-blue-alt);
+  color: white;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  padding: 8px 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.savvi-button-primary-alt:hover {
+  background: var(--savvi-blue-alt-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-alt-sm);
+}
+
+/* Buttons - Success */
+.savvi-button-success {
+  background: var(--savvi-green);
+  color: white;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  padding: 8px 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.savvi-button-success:hover {
+  background: var(--savvi-green-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Badges */
+.savvi-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.savvi-badge-blue {
+  background: var(--savvi-cyan-light);
+  color: var(--savvi-blue);
+  border: 1px solid var(--savvi-cyan);
+}
+
+.savvi-badge-green {
+  background: var(--savvi-green-light);
+  color: var(--savvi-green-dark);
+  border: 1px solid var(--savvi-green);
+}
+
+.savvi-badge-alt {
+  background: rgba(36, 169, 236, 0.1);
+  color: var(--savvi-blue-alt);
+  border: 1px solid rgba(36, 169, 236, 0.3);
+}
+
+/* Table Header */
+.savvi-table-header {
+  background: var(--savvi-blue);
+  color: white;
+}
+
+.savvi-table-header-alt {
+  background: var(--savvi-blue-alt);
+  color: white;
+}
+
+.savvi-table-header th {
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ==============================
+   ANIMATIONS
+============================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.savvi-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.savvi-pulse {
+  animation: pulse 2s ease-in-out infinite;
 }
