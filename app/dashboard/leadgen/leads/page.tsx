@@ -111,8 +111,8 @@ const [newLeadData, setNewLeadData] = useState({
 
   // Apply filters
   useEffect(() => {
-    applyCurrentFilters();
-  }, [allLeads]);
+  applyCurrentFilters();
+}, [allLeads, filters.company]);
 
   const applyCurrentFilters = () => {
     const filtered = allLeads.filter(lead => {
@@ -835,9 +835,21 @@ const handleSaveAndFollowup = async () => {
   }
 };
 
-useEffect(() => {
-  fetchLeads();
+// useEffect(() => {
+//   fetchLeads();
 
+//   const urlParams = new URLSearchParams(window.location.search);
+//   const searchCompany = urlParams.get("search");
+
+//   if (searchCompany) {
+//     setFilters(prev => ({
+//       ...prev,
+//       company: searchCompany,
+//     }));
+//   }
+// }, []);
+
+useEffect(() => {
   const urlParams = new URLSearchParams(window.location.search);
   const searchCompany = urlParams.get("search");
 
@@ -847,6 +859,8 @@ useEffect(() => {
       company: searchCompany,
     }));
   }
+
+  fetchLeads();
 }, []);
   return (
     <div className="flex h-screen bg-[#f8fafc] overflow-hidden font-['Calibri'] text-slate-800">

@@ -1122,14 +1122,16 @@ useEffect(() => {
                   {/* CALL */}
 
                   <button
-                    onClick={() =>
-                      alert(
-                        `Calling ${
-                          item.company ||
-                          "contact"
-                        }...`
-                      )
-                    }
+                    onClick={() => {
+  const company = item.company?.trim();
+
+  if (!company) {
+    alert("Company name not found");
+    return;
+  }
+
+  router.push(`/dashboard/leadgen/leads?search=${encodeURIComponent(company)}`);
+}}
                     className="w-full bg-[#24a9ec] text-white text-[10px] font-bold py-2 rounded-lg hover:bg-[#1a8bc4] transition-colors flex items-center justify-center gap-1.5"
                   >
 
